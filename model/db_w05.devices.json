@@ -1,0 +1,119 @@
+[{
+  "_id": {
+    "$oid": "688bc60dae19851a422039ba"
+  },
+  "name": "Sony PlayStation 5",
+  "type": "Gaming Console",
+  "brand": "Sony",
+  "model": "CFI-1200A",
+  "specifications": {
+    "processor": "AMD Zen 2 (8 Cores)",
+    "gpu": "AMD RDNA 2",
+    "storageGB": 825,
+    "color": "White",
+    "features": [
+      "4K Gaming",
+      "Ray Tracing",
+      "Tempest 3D Audio"
+    ]
+  },
+  "price": 499.99,
+  "releaseDate": "2020-11-12"
+},
+{
+  "_id": {
+    "$oid": "688bc69fae19851a422039bb"
+  },
+  "name": "Apple Watch Series 9",
+  "type": "Smartwatch",
+  "brand": "Apple",
+  "model": "A2980",
+  "specifications": {
+    "display": "Always-On Retina",
+    "processor": "S9 SiP",
+    "storageGB": 64,
+    "color": "Midnight",
+    "features": [
+      "Blood Oxygen Sensor",
+      "ECG App",
+      "Double Tap Gesture"
+    ]
+  },
+  "price": 399,
+  "releaseDate": "2023-09-22"
+},
+{
+  "_id": {
+    "$oid": "688bc6e1ae19851a422039bd"
+  },
+  "name": "Dell XPS 13 Plus",
+  "type": "Laptop",
+  "brand": "Dell",
+  "model": "9320",
+  "specifications": {
+    "processor": "Intel Core i7-1360P",
+    "ramGB": 16,
+    "storageGB": 512,
+    "screenSizeInch": 13.4,
+    "os": "Windows 11 Home"
+  },
+  "price": 1499.99,
+  "releaseDate": "2023-02-09"
+},
+{
+  "_id": {
+    "$oid": "688bc714ae19851a422039be"
+  },
+  "name": "Amazon Echo Dot (5th Gen)",
+  "type": "Smart Speaker",
+  "brand": "Amazon",
+  "model": "B7W64E",
+  "specifications": {
+    "voiceAssistant": "Alexa",
+    "connectivity": "Wi-Fi, Bluetooth",
+    "color": "Charcoal",
+    "features": [
+      "Temperature Sensor",
+      "Eero Built-in",
+      "Improved Audio"
+    ]
+  },
+  "price": 49.99,
+  "releaseDate": "2022-09-28"
+},
+{
+  "_id": {
+    "$oid": "688bc756ae19851a422039bf"
+  },
+  "name": "Sony WH-1000XM5",
+  "type": "Headphones",
+  "brand": "Sony",
+  "model": "WH1000XM5/B",
+  "specifications": {
+    "type": "Over-ear",
+    "connectivity": "Bluetooth 5.2",
+    "noiseCancellation": true,
+    "batteryLifeHours": 30,
+    "color": "Black"
+  },
+  "price": 349.99,
+  "releaseDate": "2022-05-12"
+},
+{
+  "_id": {
+    "$oid": "688bc77fae19851a422039c0"
+  },
+  "name": "Samsung Galaxy Tab S9 Ultra",
+  "type": "Tablet",
+  "brand": "Samsung",
+  "model": "SM-X910N",
+  "specifications": {
+    "display": "14.6-inch Dynamic AMOLED 2X",
+    "processor": "Snapdragon 8 Gen 2 for Galaxy",
+    "ramGB": 12,
+    "storageGB": 256,
+    "sPenIncluded": true
+  },
+  "price": 1199.99,
+  "releaseDate": "2023-07-26"
+}]
