@@ -1,0 +1,20 @@
+### Get all customers from DB
+GET http://localhost:3000/customers
+
+### Get customer By ID
+GET http://localhost:3000/customers/688cefd7e176c9be90f79a94
+
+### Get customer By username
+GET http://localhost:3000/customers/diego0812
+
+### Creating a customer
+POST http://localhost:3000/customers HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Diego",
+    "lastName": "Rodriguez",
+    "email": "diegorodriguez@gmail.com",
+    "password": "diego",
+    "username": "diego0812"
+}

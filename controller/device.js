@@ -1,17 +1,18 @@
-const mongodb = require("../database/connect");
+const mongodb = require('../database/connect');
 //const ObjectId = require("mongodb").ObjectId;
 
 const getAllDevices = async (req, res) => {
   //#swagger.tags=['classes']
   try {
-    const result = await mongodb.getDb().db().collection("devices").find();
-    const devices= await result.toArray();
+    const result = await mongodb.getDb().db().collection('devices').find();
+    const devices = await result.toArray();
     res.status(200).json(devices);
   } catch (error) {
-    console.error("Error to get devices", error);
-    res.status(500).json({ message: "Error in server to get devices." });
+    console.error('Error to get devices', error);
+    res.status(500).json({ message: 'Error in server to get devices.' });
   }
 };
+
 /** 
 const getSingleClass = async (req, res) => {
   //#swagger.tags=['classes']
@@ -169,7 +170,7 @@ const deleteClass = async (req, res) => {
 };
 */
 module.exports = {
-  getAllDevices,
+  getAllDevices
   //getSingleClass,
   //createClass,
   //updateClass,
