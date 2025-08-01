@@ -1,6 +1,6 @@
 const validator = require("../helpers/validate");
 
-const saveStudents = (req, res, next) => {
+const saveDevice = (req, res, next) => {
   const validationRule = {
     name: "required|string",
     type: "required|string",
@@ -22,7 +22,7 @@ const saveStudents = (req, res, next) => {
     }
   });
 };
-
+/** 
 const saveClasses = (req, res, next) => {
   const validationRule = {
     course_code: "required|string",
@@ -41,9 +41,9 @@ const saveClasses = (req, res, next) => {
     }
   });
 };
-
+*/
 module.exports = {
-  saveStudents,
-  saveClasses
+  saveDevice,
+  
   
 };

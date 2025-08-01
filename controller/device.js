@@ -1,122 +1,152 @@
 const mongodb = require("../database/connect");
-//const ObjectId = require("mongodb").ObjectId;
+const ObjectId = require("mongodb").ObjectId;
 
 const getAllDevices = async (req, res) => {
-  //#swagger.tags=['classes']
+  //#swagger.tags=['devices']
   try {
     const result = await mongodb.getDb().db().collection("devices").find();
-    const devices= await result.toArray();
+    const devices = await result.toArray();
     res.status(200).json(devices);
   } catch (error) {
     console.error("Error to get devices", error);
     res.status(500).json({ message: "Error in server to get devices." });
   }
 };
-/** 
-const getSingleClass = async (req, res) => {
-  //#swagger.tags=['classes']
+
+const getSingleDevice = async (req, res) => {
+  //#swagger.tags=['device']
   try {
     if (!ObjectId.isValid(req.params.id)) {
-      res.status(400).json("Must use a valid contact id to find a class.");
+      res.status(400).json("Must use a valid contact id to find a devices.");
     }
 
-    const classId = ObjectId.createFromHexString(req.params.id);
-    const class_ = await mongodb
+    const deviceId = ObjectId.createFromHexString(req.params.id);
+    const device = await mongodb
       .getDb()
       .db()
-      .collection("classes")
-      .findOne({ _id: classId });
+      .collection("devices")
+      .findOne({ _id: deviceId });
 
-    if (!class_) {
-      res.status(404).json({ message: "Class no found" });
+    if (!device) {
+      res.status(404).json({ message: "Device no found" });
       return;
     }
-    res.status(200).json(class_);
+    res.status(200).json(device);
   } catch (error) {
-    console.error("Error to get class:", error);
+    console.error("Error to get device:", error);
 
-    res.status(500).json({ message: "Error Server to get class" });
+    res.status(500).json({ message: "Error Server to get device" });
   }
 };
 
-const createClass = async (req, res) => {
-  //#swagger.tags=['classes']
+const createDevice = async (req, res) => {
+  //#swagger.tags=['devices']
   try {
-    if (!req.body.course_code || !req.body.course_name || !req.body.rolled_students) {
+    
+    if (
+      !req.body.name ||
+      !req.body.type ||
+      !req.body.brand ||
+      !req.body.model ||
+      !req.body.specifications ||
+      !req.body.price ||
+      !req.body.releaseDate
+    ) {
       return res
         .status(400)
-        .json({ message: "course_code, course_name and rolled_students are necesary. something was wrong" });
-    }
-    const class_ = {
-      course_code: req.body.course_code,
-      course_name: req.body.course_name,
-      rolled_students: req.body.rolled_students,
-    };
-
-    const response = await mongodb
-      .getDb()
-      .db()
-      .collection("classes")
-      .insertOne(class_);
-    if (response.acknowledged) {
-      res.status(201).json({
-        message: "Class created successfully",
-        classId: response.insertedId, // Return the ID of the newly created class
-      });
-    } else {
-      res
-        .status(500)
         .json({
           message:
-            "Failed to create class: Operation not acknowledged by database.",
+            " name, type, brand, model, specifications, price, realeaseDate are necesary. something was wrong",
         });
     }
-  } catch (error) {
-    console.error("Error creating class:", error); // Log the actual error for debugging
+    const device = {
+      name: req.body.name,
+      type: req.body.type,
+      brand: req.body.brand,
+      model: req.body.model,
+      specifications: req.body.specifications,
+      price: req.body.price,
+      releaseDate: req.body.releaseDate,
+    };
 
-    // Generic catch-all for other unexpected errors
-    res
-      .status(500)
-      .json({
-        message:
-          error.message ||
-          "An unexpected error occurred while creating the class.",
+    const response = await mongodb
+      .getDb()
+      .db()
+      .collection("devices")
+      .insertOne(device);
+    if (response.acknowledged) {
+      res.status(201).json({
+        message: "Device created successfully",
+        classId: response.insertedId, // Return the ID of the newly created device
       });
+    } else {
+      res.status(500).json({
+        message:
+          "Failed to create device: Operation not acknowledged by database.",
+      });
+    }
+  } catch (error) {
+    console.error("Error creating device:", error);
+
+    res.status(500).json({
+      message:
+        error.message ||
+        "An unexpected error occurred while creating the device.",
+    });
   }
 };
 
-const updateClass = async (req, res) => {
-  //#swagger.tags=['classes']
+const updateDevice = async (req, res) => {
+  //#swagger.tags=['devices']
   try {
     if (!ObjectId.isValid(req.params.id)) {
-      res.status(400).json("Must use a valid contact id to find a class.");
+      res.status(400).json("Must use a valid contact id to find a devices.");
     }
-    const classId = ObjectId.createFromHexString(req.params.id);
-    if (!req.body.course_code || !req.body.course_name) {
-      return res.status(400).json({ message: " course_code, course_name." });
+
+    const deviceId = ObjectId.createFromHexString(req.params.id);
+   
+     if (
+      !req.body.name ||
+      !req.body.type ||
+      !req.body.brand ||
+      !req.body.model ||
+      !req.body.specifications ||
+      !req.body.price ||
+      !req.body.releaseDate
+    ) {
+      return res
+        .status(400)
+        .json({
+          message:
+            " name, type, brand, model, specifications, price, realeaseDate are necesary. something was wrong",
+        });
     }
-    const class_ = {
-      course_code: req.body.course_code,
-      course_name: req.body.course_name,
-      rolled_students: req.body.rolled_students,
+    const device = {
+      name: req.body.name,
+      type: req.body.type,
+      brand: req.body.brand,
+      model: req.body.model,
+      specifications: req.body.specifications,
+      price: req.body.price,
+      releaseDate: req.body.releaseDate,
     };
     const response = await mongodb
       .getDb()
       .db()
-      .collection("classes")
-      .replaceOne({ _id: classId }, class_);
+      .collection("devices")
+      .replaceOne({ _id: deviceId }, device);
     if (response.modifiedCount > 0) {
       res.status(200).json({
-        message: "Class update successfully",
-        classId: classId, //  as
+        message: "Device update successfully",
+        deviceId: deviceId, //  as
       });
     } else {
       res
         .status(500)
-        .json(response.error || "Some error occurred while updating the class");
+        .json(response.error || "Some error occurred while updating the device");
     }
   } catch (error) {
-    console.error("Error updating the class:", error); // Log the actual error for debugging
+    console.error("Error updating the device:", error); // Log the actual error for debugging
 
     // Generic catch-all for other unexpected errors
     res
@@ -124,38 +154,38 @@ const updateClass = async (req, res) => {
       .json({
         message:
           error.message ||
-          "An unexpected error occurred while updating the class.",
+          "An unexpected error occurred while updating the device.",
       });
   }
 };
 
-const deleteClass = async (req, res) => {
-  //#swagger.tags=['classes']
+const deleteDevice = async (req, res) => {
+  //#swagger.tags=['devices']
 
   try {
     if (!ObjectId.isValid(req.params.id)) {
-      res.status(400).json("Must use a valid contact id to find a class.");
+      res.status(400).json("Must use a valid contact id to find a devices.");
     }
 
-    const classId = ObjectId.createFromHexString(req.params.id);
+    const deviceId = ObjectId.createFromHexString(req.params.id);
 
     const response = await mongodb
       .getDb()
       .db()
-      .collection("classes")
-      .deleteOne({ _id: classId });
+      .collection("devices")
+      .deleteOne({ _id: deviceId });
     if (response.deletedCount > 0) {
       res.status(200).json({
-        message: "Class delete successfully",
-        classId: classId,
+        message: "Devices delete successfully",
+        deviceId: deviceId,
       });
     } else {
       res
         .status(500)
-        .json(response.error || "Some error occurred while delete the class");
+        .json(response.error || "Some error occurred while delete the device");
     }
   } catch (error) {
-    console.error("Error creating class:", error); // Log the actual error for debugging
+    console.error("Error delete the device:", error); // Log the actual error for debugging
 
     // Generic catch-all for other unexpected errors
     res
@@ -163,15 +193,15 @@ const deleteClass = async (req, res) => {
       .json({
         message:
           error.message ||
-          "An unexpected error occurred while creating the class.",
+          "An unexpected error occurred while creating the device.",
       });
   }
 };
-*/
+
 module.exports = {
   getAllDevices,
-  //getSingleClass,
-  //createClass,
-  //updateClass,
-  //deleteClass,
+  getSingleDevice,
+  createDevice,
+  updateDevice,
+  deleteDevice
 };
