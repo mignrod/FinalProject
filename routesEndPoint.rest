@@ -74,7 +74,55 @@ GET https://cse341-team06.onrender.com/electronic
 ### test getDeviceById endpoint
 GET https://cse341-team06.onrender.com/electronic/688bc60dae19851a422039ba
 
-### test getDeviceByName endpoint
+### test createDevice endpoint
+POST https://cse341-team06.onrender.com/electronic
+Content-Type: application/json
+
+{
+  "name": "New Smartphone",
+  "type": "smartphone",
+  "brand": "xiaomy",
+  "model": "Model X",
+  "specifications": {
+    "processor": "AMD Zen 2 (8 Cores)",
+    "gpu": "AMD RDNA 2",
+    "storageGB": 1024,
+    "color": "Black",
+    "features": [
+      "camera 50 MP",
+      "Tempest 3D Audio"
+    ]
+  },
+  "price": 600.99,
+  "releaseDate": "2024-11-12"
+}
+
+### test updateDevice endpoint
+PUT https://cse341-team06.onrender.com/electronic/688d4f6380c70117bd1a88e7
+Content-Type: application/json
+
+{
+  "name": "Updated Smartphone2",
+  "type": "smartphone",
+  "brand": "xiaomy",
+  "model": "Model X",
+  "specifications": {
+    "processor": "AMD Zen 2 (8 Cores)",
+    "gpu": "AMD RDNA 2",
+    "storageGB": 1024,
+    "color": "Black",
+    "features": [
+      "camera 50 MP",
+      "Tempest 3D Audio"
+    ]
+  },
+  "price": 600.99,
+  "releaseDate": "2024-11-12"
+}
+
+### test deleteDevice endpoint
+DELETE https://cse341-team06.onrender.com/electronic/688d48866a4c870350f3f82a
+
 
 
 
