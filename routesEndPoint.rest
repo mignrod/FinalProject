@@ -52,7 +52,7 @@ Content-Type: application/json
       "Tempest 3D Audio"
     ]
   },
-  "price": 600.99,
+  "price": "600.99",
   "releaseDate": "2024-11-12"
 }
 
