@@ -8,7 +8,7 @@ const saveDevice = (req, res, next) => {
     model: "required|string",
     specifications: "required",
     price: "required|numeric",
-    releaseDate: "required|date|date_format:YYYY-MM-DD"
+    releaseDate: "required|date|date_format:YYYY-MM-DD",
   };
   validator(req.body, validationRule, {}, (err, status) => {
     if (!status) {
@@ -18,29 +18,20 @@ const saveDevice = (req, res, next) => {
         data: err,
       });
     } else {
-        // Validation of 'specifications' being a object
-        const specifications = req.body.specifications;
-        
-        // Validation is object and ( typeof null === 'object')
-        if (typeof specifications !== 'object' || specifications === null) {
-          return res.status(412).send({
-            success: false,
-            message: "Validation failed",
-            data: {
-              specifications: ["The specifications field must be an object."]
-            }
-          });
-        }
-        // Validation that field 'processor' is required in specifications and being a string.
-        if (typeof specifications.processor !== 'string' || specifications.processor.length === 0) {
-          return res.status(412).send({
-            success: false,
-            message: "Validation failed",
-            data: {
-              processor: ["The processor field is required and must be a string."]
-            }
-          });
-        }
+      // Validation of 'specifications' being a object
+      const specifications = req.body.specifications;
+
+      // Validation is object and ( typeof null === 'object')
+      if (typeof specifications !== "object" || specifications === null) {
+        return res.status(412).send({
+          success: false,
+          message: "Validation failed",
+          data: {
+            specifications: ["The specifications field must be an object."],
+          },
+        });
+      }
+
       next();
     }
   });
@@ -48,6 +39,4 @@ const saveDevice = (req, res, next) => {
 
 module.exports = {
   saveDevice,
-  
-  
 };
