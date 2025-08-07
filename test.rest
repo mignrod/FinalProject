@@ -12,9 +12,24 @@ POST http://localhost:3000/customers HTTP/1.1
 Content-Type: application/json
 
 {
+    "firstName": "Diego2",
+    "lastName": "Rodriguez",
+    "email": "diegorodriguez@gmail.com",
+    "password": "diego2",
+    "username": "diego0812"
+}
+
+### Updating a user by ID
+PUT http://localhost:3000/customers/688cf39c411d81560d15fe33 HTTP/1.1
+Content-Type: application/json
+
+{
     "firstName": "Diego",
     "lastName": "Rodriguez",
     "email": "diegorodriguez@gmail.com",
     "password": "diego",
-    "username": "diego0812"
+    "username": "new_username"
 }
+
+### Deleting users
+DELETE http://localhost:3000/customers/689514a87790f25d0b46fbdb

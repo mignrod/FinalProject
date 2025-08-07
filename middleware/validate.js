@@ -1,21 +1,21 @@
-const validator = require("../helpers/validate");
+const validator = require('../helpers/validate');
 
 const saveStudents = (req, res, next) => {
   const validationRule = {
-    name: "required|string",
-    type: "required|string",
-    brand: "required|string",
-    model: "required|string",
-    specifications: "required",
-    price: "required",
-    releaseDate: "required|date|date_format:YYYY-MM-DD"
+    name: 'required|string',
+    type: 'required|string',
+    brand: 'required|string',
+    model: 'required|string',
+    specifications: 'required',
+    price: 'required',
+    releaseDate: 'required|date|date_format:YYYY-MM-DD'
   };
   validator(req.body, validationRule, {}, (err, status) => {
     if (!status) {
       res.status(412).send({
         success: false,
-        message: "Validation failed",
-        data: err,
+        message: 'Validation failed',
+        data: err
       });
     } else {
       next();
@@ -25,16 +25,38 @@ const saveStudents = (req, res, next) => {
 
 const saveClasses = (req, res, next) => {
   const validationRule = {
-    course_code: "required|string",
-    course_name: "required|string",
-    rolled_students: "array|min:0",
+    course_code: 'required|string',
+    course_name: 'required|string',
+    rolled_students: 'array|min:0'
   };
   validator(req.body, validationRule, {}, (err, status) => {
     if (!status) {
       res.status(412).send({
         success: false,
-        message: "Validation failed",
-        data: err,
+        message: 'Validation failed',
+        data: err
+      });
+    } else {
+      next();
+    }
+  });
+};
+
+const saveCustomers = (req, res, next) => {
+  const validationRule = {
+    firstName: 'required|string',
+    lastName: 'required|string',
+    email: 'required|string|email',
+    password: 'required|string|min:6',
+    username: 'required|string|min:3',
+    role: 'string|in:customer,admin'
+  };
+  validator(req.body, validationRule, {}, (err, status) => {
+    if (!status) {
+      res.status(404).send({
+        success: false,
+        message: 'Validation failed',
+        data: err
       });
     } else {
       next();
@@ -44,6 +66,6 @@ const saveClasses = (req, res, next) => {
 
 module.exports = {
   saveStudents,
-  saveClasses
-  
+  saveClasses,
+  saveCustomers
 };
