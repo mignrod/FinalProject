@@ -64,8 +64,27 @@ const saveCustomers = (req, res, next) => {
   });
 };
 
+const saveOrders = (req, res, next) => {
+  const validationRule = {
+    customerId: 'required|string',
+    productIds: 'required|array|min:1'
+  };
+  validator(req.body, validationRule, {}, (err, status) => {
+    if (!status) {
+      res.status(412).send({
+        success: false,
+        message: 'Validation failed',
+        data: err
+      });
+    } else {
+      next();
+    }
+  });
+};
+
 module.exports = {
   saveStudents,
   saveClasses,
-  saveCustomers
+  saveCustomers,
+  saveOrders
 };

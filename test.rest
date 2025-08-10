@@ -33,3 +33,31 @@ Content-Type: application/json
 
 ### Deleting users
 DELETE http://localhost:3000/customers/689514a87790f25d0b46fbdb
+
+# ======================================================
+#                     ORDERS SECTION
+# ======================================================
+
+### Creating a new order
+POST http://localhost:3000/orders HTTP/1.1
+Content-Type: application/json
+
+{
+    "customerId": "688cefd7e176c9be90f79a94",
+    "productIds": ["6897fc99c2739fafbe27ec76"]
+}
+
+### Deleting orders
+DELETE http://localhost:3000/orders/{orderId}
+
+### Getting order by customer
+GET http://localhost:3000/orders/customer/688cefd7e176c9be90f79a94
+
+### Updating an order
+PUT http://localhost:3000/orders/6898004cee02105fe0c0bca0 HTTP/1.1
+Content-Type: application/json
+
+{
+    "customerId": "688cefd7e176c9be90f79a94",
+    "productIds": ["6897fc99c2739fafbe27ec76", "689801e2c2739fafbe27ec7a"]
+}
