@@ -1,0 +1,105 @@
+### API Endpoints for Localhost:3000
+### test route endpoint
+GET http://localhost:3000/
+
+### test getAllPayments endpoin
+GET http://localhost:3000/payments
+
+### test getSingleDevice endpoint
+GET http://localhost:3000/payments/68992ad3e19b5b018f6d6eb4
+
+### test createDevice endpointPayment
+POST http://localhost:3000/payments
+Content-Type: application/json
+
+{
+  "payment_amount": 100.50,
+  "orderId": "688cf39c411d81560d15fe33"
+}
+
+### test updatePayments endpoint 
+### remember to use the id of the device you want to update
+### and exist in the database
+PUT http://localhost:3000/payments/68995bd1c223f3197b1be325
+Content-Type: application/json
+
+{
+  "payment_amount": 170,
+  "orderId": "688cf39c411d81560d15fe33"
+}
+
+### test deleteDevice endpoint
+### remember to use the id of the device you want to delete
+### and exist in the database
+DELETE http://localhost:3000/payments/68995c18c223f3197b1be326
+
+
+### API Endpoints for Render.com
+
+
+### test route endpoint
+GET https://cse341-team06.onrender.com/
+
+### test getAllDevices endpoint
+GET https://cse341-team06.onrender.com/electronic
+
+### test getDeviceById endpoint
+GET https://cse341-team06.onrender.com/electronic/688bc60dae19851a422039ba
+
+### test createDevice endpoint
+POST https://cse341-team06.onrender.com/electronic
+Content-Type: application/json
+
+{
+  "name": "New Smartphone",
+  "type": "smartphone",
+  "brand": "xiaomy",
+  "model": "Model X",
+  "specifications": {
+    "processor": "AMD Zen 2 (8 Cores)",
+    "gpu": "AMD RDNA 2",
+    "storageGB": 1024,
+    "color": "Black",
+    "features": [
+      "camera 50 MP",
+      "Tempest 3D Audio"
+    ]
+  },
+  "price": 600.99,
+  "releaseDate": "2024-11-12"
+}
+
+### test updateDevice endpoint
+PUT https://cse341-team06.onrender.com/electronic/688d4f6380c70117bd1a88e7
+Content-Type: application/json
+
+{
+  "name": "Updated Smartphone2",
+  "type": "smartphone",
+  "brand": "xiaomy",
+  "model": "Model X",
+  "specifications": {
+    "processor": "AMD Zen 2 (8 Cores)",
+    "gpu": "AMD RDNA 2",
+    "storageGB": 1024,
+    "color": "Black",
+    "features": [
+      "camera 50 MP",
+      "Tempest 3D Audio"
+    ]
+  },
+  "price": 600.99,
+  "releaseDate": "2024-11-12"
+}
+
+### test deleteDevice endpoint
+DELETE https://cse341-team06.onrender.com/electronic/688d48866a4c870350f3f82a
+
+
+
+
+
+
+
+
+

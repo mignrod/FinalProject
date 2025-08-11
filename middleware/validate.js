@@ -37,6 +37,24 @@ const saveDevice = (req, res, next) => {
   });
 };
 
+const savePayment = (req, res, next) => {
+  const validationRule = {
+    payment_amount: "required|numeric",
+    orderId: "required|string",
+  };
+  validator(req.body, validationRule, {}, (err, status) => {
+    if (!status) {
+      res.status(412).send({
+        success: false,
+        message: "Validation of payment failed",
+        data: err,
+      });
+    } else {
+      next();
+    }
+  });
+};
 module.exports = {
   saveDevice,
+  savePayment
 };
