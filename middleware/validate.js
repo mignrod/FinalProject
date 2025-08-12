@@ -1,6 +1,6 @@
 const validator = require('../helpers/validate');
 
-const saveStudents = (req, res, next) => {
+const saveDevice = (req, res, next) => {
   const validationRule = {
     name: 'required|string',
     type: 'required|string',
@@ -18,22 +18,34 @@ const saveStudents = (req, res, next) => {
         data: err
       });
     } else {
+      // Validation of 'specifications' being a object
+      const specifications = req.body.specifications;
+      // Validation is object and ( typeof null === 'object')
+      if (typeof specifications !== 'object' || specifications === null) {
+        return res.status(412).send({
+          success: false,
+          message: 'Validation failed',
+          data: {
+            specifications: ['The specifications field must be an object.']
+          }
+        });
+      }
+
       next();
     }
   });
 };
 
-const saveClasses = (req, res, next) => {
+const savePayment = (req, res, next) => {
   const validationRule = {
-    course_code: 'required|string',
-    course_name: 'required|string',
-    rolled_students: 'array|min:0'
+    payment_amount: 'required|numeric',
+    orderId: 'required|string'
   };
   validator(req.body, validationRule, {}, (err, status) => {
     if (!status) {
       res.status(412).send({
         success: false,
-        message: 'Validation failed',
+        message: 'Validation of payment failed',
         data: err
       });
     } else {
@@ -83,8 +95,8 @@ const saveOrders = (req, res, next) => {
 };
 
 module.exports = {
-  saveStudents,
-  saveClasses,
+  saveDevice,
+  savePayment,
   saveCustomers,
   saveOrders
 };

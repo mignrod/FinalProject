@@ -3,6 +3,7 @@ const router = express.Router();
 
 router.use('/', require('./swagger'));
 router.use('/electronic', require('./electronic_device'));
+router.use('/payments', require('./payments'));
 router.use('/customers', require('./customers'));
 router.use('/orders', require('./orders'));
 
