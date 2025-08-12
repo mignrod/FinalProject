@@ -1,15 +1,17 @@
+
 const mongodb = require("../database/connect");
 const ObjectId = require("mongodb").ObjectId;
 
 const getAllDevices = async (req, res) => {
   //#swagger.tags=['devices']
   try {
+
     const result = await mongodb.getDb().db().collection("devices").find();
     const devices = await result.toArray();
     res.status(200).json(devices);
   } catch (error) {
-    console.error("Error to get devices", error);
-    res.status(500).json({ message: "Error in server to get devices." });
+    console.error('Error to get devices', error);
+    res.status(500).json({ message: 'Error in server to get devices.' });
   }
 };
 
@@ -17,6 +19,7 @@ const getSingleDevice = async (req, res) => {
   //#swagger.tags=['devices']
   try {
     if (!ObjectId.isValid(req.params.id)) {
+
       res.status(400).json("Must use a valid contact id to find a devices.");
     }
 
@@ -42,7 +45,6 @@ const getSingleDevice = async (req, res) => {
 const createDevice = async (req, res) => {
   //#swagger.tags=['devices']
   try {
-    
     if (
       !req.body.name ||
       !req.body.type ||
