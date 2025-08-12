@@ -5,7 +5,10 @@ const deviceController = require('../controller/device');
 const validation = require('../middleware/validate');
 
 router.get('/', deviceController.getAllDevices);
-
+router.get('/:id', deviceController.getSingleDevice);
+router.post('/',validation.saveDevice, deviceController.createDevice);
+router.put('/:id',validation.saveDevice,deviceController.updateDevice);
+router.delete('/:id', deviceController.deleteDevice);
 
 /*
 router.get('/', (req,res) => {
