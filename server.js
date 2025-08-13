@@ -9,6 +9,7 @@ const mongodb = require('./database/connect');
 const app = express();
 
 const cors = require('cors');
+const MongoStore = require('connect-mongo');
 
 const port = 3000;
 
@@ -35,7 +36,12 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl:
+        process.env.MONGODB_URI || 'mongodb://localhost:27017/tu_basededatos',
+      collectionName: 'sessions'
+    })
   })
 );
 app.use(passport.initialize());

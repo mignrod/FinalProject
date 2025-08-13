@@ -5,30 +5,10 @@
     "description": "Users Api",
     "version": "1.0.0"
   },
-  "host": "cse341-team06.onrender.com",
+  "host": "finalproject-6yx6.onrender.com",
   "basePath": "/",
   "schemes": ["https", "http"],
   "paths": {
-    "/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
     "/electronic/": {
       "get": {
         "tags": ["devices"],
