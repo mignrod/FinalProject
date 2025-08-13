@@ -544,6 +544,52 @@
           "500": { "description": "Internal Server Error" }
         }
       }
+    },
+    "/auth/github": {
+      "get": {
+        "tags": ["auth"],
+        "summary": "Redirige al usuario a GitHub para autenticación OAuth",
+        "responses": {
+          "302": { "description": "Redirección a GitHub OAuth" }
+        }
+      }
+    },
+    "/auth/github/callback": {
+      "get": {
+        "tags": ["auth"],
+        "summary": "Callback de GitHub OAuth",
+        "responses": {
+          "302": { "description": "Redirección tras autenticación" },
+          "401": { "description": "No autenticado" }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "tags": ["auth"],
+        "summary": "Devuelve el usuario autenticado (requiere login)",
+        "responses": {
+          "200": {
+            "description": "Usuario autenticado",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": { "type": "object" }
+              }
+            }
+          },
+          "401": { "description": "No autenticado" }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags": ["auth"],
+        "summary": "Cierra la sesión del usuario",
+        "responses": {
+          "302": { "description": "Redirección tras logout" }
+        }
+      }
     }
   }
 }
