@@ -71,20 +71,6 @@ const saveCustomers = (req, res, next) => {
         data: err
       });
     } else {
-      // Validation of 'specifications' being a object
-      const specifications = req.body.specifications;
-
-      // Validation is object and ( typeof null === 'object')
-      if (typeof specifications !== 'object' || specifications === null) {
-        return res.status(412).send({
-          success: false,
-          message: 'Validation failed',
-          data: {
-            specifications: ['The specifications field must be an object.']
-          }
-        });
-      }
-
       next();
     }
   });
